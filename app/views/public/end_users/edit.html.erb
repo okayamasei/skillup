@@ -1,0 +1,19 @@
+<%= render 'layouts/userheader' %>
+<div class="container">
+<h3>登録情報編集画面</h3><%= link_to "アカウント削除", destroy_end_user_session_path, data: { confirm: "退会しますか?" }, method: :delete , class: "btn btn-danger"%>
+
+<%= form_for(@user) do |f| %>
+<div class="form-group">
+<%= f.label :name, '氏名' %>
+<%= f.text_field :name, class: 'form-control' %>
+</div>
+ 
+<div class="form-group">
+<%= f.label :email, 'メールアドレス' %>
+<%= f.email_field :email, class: 'form-control' %>
+</div>
+
+<div class="al-c"><%= f.submit 'プロフィール編集を完了する', class: 'btn btn-info' %></div>
+<% end %>
+
+</div>

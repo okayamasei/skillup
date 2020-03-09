@@ -18,7 +18,8 @@ namespace :admin do
   	resources :items
   	resources :genres, :only => [:index,:edit,:create,:update]
   	resources :end_users, :except => [:create]
-  	resources :orders, :only => [:index,:show,:update]
+    resources :orders, :only => [:index,:show,:update]
+    root 'top#top'
   end
 
   scope module: :public do
@@ -27,6 +28,7 @@ namespace :admin do
   	resources :end_users, :only => [:show,:edit,:update]
   	resources :cart_items
   	resources :orders
-  	resources :addresses, :except => [:show]
+    resources :addresses, :except => [:show]
+    root 'items#top'
   end
 end
