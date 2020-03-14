@@ -72,3 +72,4 @@ gem 'jquery-rails'
 gem 'rufo'
 
 gem 'paranoia'
+gem 'pry-rails'
