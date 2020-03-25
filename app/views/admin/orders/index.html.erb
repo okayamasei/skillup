@@ -2,29 +2,25 @@
 <div class="container">
 管理者注文一覧画面
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>購入日時</th>
-            <th>購入者</th>
-            <th>注文個数</th>
-            <th>注文ステータス</th>
-        </tr>
-    </thead>
-    <tbody>
-    <% @orders.each do |f| %>
-        <tr>
-            <td><%= f.id %></td>
-            <td><%= f.name %></td>
-            <td><%= f.non_taxed_price %></td>
-            <td><%= f.genre.name %></td>
-            <td><% if f.status == 0 %>
-            <%= "販売中" %>
-            <% else %>
-            <%= "販売停止中" %></td>
-            <% end %>
-        </tr>
+<table>
+  <tr>
+    <th>注文ステータス</th>
+    <th>支払額</th>
+    <th>支払い方法</th>
+    <th>配送先</th>
+    <th></th>
+  </tr>
+  <% @all_orders.each do |order| %>
+  <tr>
+    <%= form_for(order, url: admin_order_path(order.id), method: :patch) do |o| %>
+    <td><%= o.select :status, ['入金待ち','入金確認','制作中','発送準備中','発送済み'] %><%= o.submit '更新' %></td>
     <% end %>
-    </tbody>
+    <td>〇〇円</td>
+    <td><%= order.payment_method %></td>
+    <td><%= order.order_address_info %></td>
+    <td><%= link_to "show", admin_order_path(order.id) %></td>
+  </tr>
+  <% end %>
 </table>
+
 </div>

@@ -2,26 +2,22 @@
 <div class="container">
 購入・注文情報入力画面
 
-<%= form_for @order,url: confirm_orders_path, html: {method: 'GET'} do |o| %>
-<h4>支払い方法</h4>
-<input type="radio" id="rd0" name="pay" value="pay1" />クレジットカード<br>
-<input type="radio" id="rd1" name="pay" value="pay2" />銀行振込
-
-<h4>お届け先</h4>
-<input type="radio" id="rd0" name="address" value="address1" />ご自身の住所<br>
-   〒<%= @user.now_postal_code %> <%= @user.now_address %><br>
-    <%= @user.first_name %> <%= @user.last_name %><br>
-
-<input type="radio" id="rd1" name="address" value="address2" />新しいお届け先<br>
-<%= label_tag :郵便番号 %>
-<%= text_field_tag 'address[postal_code]' %>ハイフンなし<br>
-<%= label_tag :住所 %>
-<%= text_field_tag 'address[address]' %><br>
-<%= label_tag :宛名 %>
-<%= text_field_tag 'address[name]' %><br>
-
-
-<%= o.submit "確認画面へ進む" %>
+<%= form_with(url: confirm_orders_path, local: true, method: :get) do |f| %>
+  <p>支払い方法選択</p>
+    <%= radio_button :order, :payment_method, 'クレジットカード' %>クレジットカード<br>
+    <%= radio_button :order, :payment_method, '代引き' %>代引き<br>
+    <%= radio_button :order, :payment_method, 'コンビニ支払い' %>コンビニ支払い
+  <p>お届け先選択</p>
+    <%= radio_button :order, :delivery_info_kind, :self %>自分の住所<br>
+      <p><%= "〒" + current_end_user.now_postal_code + current_end_user.now_address %></p>
+      <p>宛名：<%= current_end_user.last_name + current_end_user.first_name %></p>
+    <%= radio_button :order, :delivery_info_kind, :other %>その他の住所<br>
+      <p><%= collection_select :other, :address_id, current_end_user.addresses, :id, :other_address_info, :include_blank => "ーーーーー選択して下さい" %></p>
+    <%= radio_button :order, :delivery_info_kind, :new %>新規住所登録<br>
+      <p>郵便番号：<%= text_field :new, :postal_code %></p>
+      <p>住所：<%= text_field :new, :address %></p>
+      <p>宛名：<%= text_field :new, :name %></p>
+    <%= submit_tag "注文確認画面へ" %>
 
 <% end %>
 </div>

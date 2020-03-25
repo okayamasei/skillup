@@ -1,67 +1,45 @@
 <%= render 'layouts/adminheader' %>
 <div class="container">
 管理者注文詳細画
-<div class="row">
-<table class="table">
-    <tr>
-        <th>購入者</th>
-        <td></td>
-    </tr>
-    <tr>
-        <th>配送先</th>
-        <td></td>
-    </tr>
-    <tr>
-        <th>支払方法</th>
-        <td>
-        form_for
-        </td>
-    </tr>
-    <tr>
-        <th>注文ステータス</th>
-        <td></td>
-    </tr>
-</table>
-</div>
-<div class="row">
-<div class="col-xs-8">
-<table class="table">
-    <thead>
-        <tr>
-            <th>商品名</th>
-            <th>単価（税抜）</th>
-            <th>数量</th>
-            <th>小計</th>
-            <th>製作ステータス</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    </tbody>
-</table>
-</div>
-<div class="col-xs-4">
 <table>
-    <tr>
-        <th>商品合計</th>
-        <td>円</td>
-    </tr>
-    <tr>
-        <th>送料</th>
-        <td>円</td>
-    </tr>
-    <tr>
-        <th>請求金額合計</th>
-        <td>円</td>
-    </tr>
+  <tr>
+    <th>注文ステータス</th>
+    <th>支払額</th>
+    <th>支払い方法</th>
+    <th>配送先</th>
+    <th></th>
+  </tr>
+  <tr>
+    <%= form_for(@order, url: admin_order_path(@order.id), method: :patch) do |o| %>
+    <td><%= o.select :status, ['入金待ち','入金確認','制作中','発送準備中','発送済み'] %><%= o.submit '更新' %></td>
+    <% end %>
+    <td>〇〇円</td>
+    <td><%= @order.payment_method %></td>
+    <td><%= @order.order_address_info %></td>
+  </tr>
 </table>
-</div>
-</div>
+<h2>注文商品一覧</h2>
+<table>
+  <tr>
+    <th>商品名</th>
+    <th>数量</th>
+    <th>小計</th>
+    <th>制作ステータス</th>
+  </tr>
+  <% CartItem.all.each do |o_i| %>
+  <tr>
+    <td><%= o_i.item.name %></td>
+    <td><%= o_i.amount %></td>
+    <td>〇〇円</td>
+    <% if @order.status == '入金待ち' %>
+      <td><%= o_i.make_status %></td>
+    <% else %>
+      
+    <% end %>
+  </tr>
+  <% end %>
+</table>
+
 
 
 </div>
