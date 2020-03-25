@@ -73,3 +73,5 @@ gem 'rufo'
 
 gem 'paranoia'
 gem 'pry-rails'
+
+gem 'enum_help'

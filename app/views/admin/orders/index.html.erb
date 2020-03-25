@@ -1,0 +1,30 @@
+<%= render 'layouts/adminheader' %>
+<div class="container">
+管理者注文一覧画面
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>購入日時</th>
+            <th>購入者</th>
+            <th>注文個数</th>
+            <th>注文ステータス</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @orders.each do |f| %>
+        <tr>
+            <td><%= f.id %></td>
+            <td><%= f.name %></td>
+            <td><%= f.non_taxed_price %></td>
+            <td><%= f.genre.name %></td>
+            <td><% if f.status == 0 %>
+            <%= "販売中" %>
+            <% else %>
+            <%= "販売停止中" %></td>
+            <% end %>
+        </tr>
+    <% end %>
+    </tbody>
+</table>
+</div>

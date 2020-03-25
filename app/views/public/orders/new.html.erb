@@ -1,0 +1,27 @@
+<%= render 'layouts/userheader' %>
+<div class="container">
+購入・注文情報入力画面
+
+<%= form_for @order,url: confirm_orders_path, html: {method: 'GET'} do |o| %>
+<h4>支払い方法</h4>
+<input type="radio" id="rd0" name="pay" value="pay1" />クレジットカード<br>
+<input type="radio" id="rd1" name="pay" value="pay2" />銀行振込
+
+<h4>お届け先</h4>
+<input type="radio" id="rd0" name="address" value="address1" />ご自身の住所<br>
+   〒<%= @user.now_postal_code %> <%= @user.now_address %><br>
+    <%= @user.first_name %> <%= @user.last_name %><br>
+
+<input type="radio" id="rd1" name="address" value="address2" />新しいお届け先<br>
+<%= label_tag :郵便番号 %>
+<%= text_field_tag 'address[postal_code]' %>ハイフンなし<br>
+<%= label_tag :住所 %>
+<%= text_field_tag 'address[address]' %><br>
+<%= label_tag :宛名 %>
+<%= text_field_tag 'address[name]' %><br>
+
+
+<%= o.submit "確認画面へ進む" %>
+
+<% end %>
+</div>

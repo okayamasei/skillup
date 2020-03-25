@@ -1,0 +1,34 @@
+<%= render 'layouts/userheader' %>
+<div class="container">
+購入・注文情報確認画
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>商品名</th>
+            <th>税抜き価格</th>
+            <th>数量</th>
+            <th>小計</th>
+        </tr>
+    </thead>
+    <tbody>
+    <% @cart.each do |c| %>
+        <tr>
+            <td><%= c.item.name %></td>
+            <td><%= c.item.non_taxed_price %></td>
+            <td><%= c.amount %></td>
+            <td></td>
+        </tr>
+        <% end %>
+    </tbody>
+</table>
+
+
+支払い方法
+<%= @pay %><br>
+お届け先
+<%= @postal_code %>
+<%= @address %><br>
+<%= @name %>
+</div>

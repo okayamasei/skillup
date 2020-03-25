@@ -6,9 +6,9 @@ class AddNamaToOrder < ActiveRecord::Migration[5.2]
     add_column :orders, :name, :string
     add_column :orders, :purchase_date, :date
     add_column :orders, :tax, :integer
-    add_column :orders, :payment_method, :integer
+    add_column :orders, :payment_method, :integer,default: 0
     add_column :orders, :total, :integer
     add_column :orders, :postage, :integer
-    add_column :orders, :status, :integer
+    add_column :orders, :status, :integer,default: 0
   end
 end

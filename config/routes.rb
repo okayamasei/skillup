@@ -14,20 +14,25 @@ devise_for :end_users, controllers: {
 }
 
 namespace :admin do
-  	resources :top
-  	resources :items
-  	resources :genres, :only => [:index,:edit,:create,:update]
-  	resources :end_users, :except => [:create]
-    resources :orders, :only => [:index,:show,:update]
-    root 'top#top'
-  end
+  resources :top
+  resources :items
+  resources :genres, :only => [:index,:edit,:create,:update]
+  resources :end_users, :except => [:create]
+  resources :orders, :only => [:index,:show,:update]
+  root 'top#top'
+end
 
   scope module: :public do
     
   	resources :items, :only => [:index,:show]
   	resources :end_users, :only => [:show,:edit,:update]
   	resources :cart_items
-  	resources :orders
+    resources :orders do
+      collection do
+        get :confirm
+        get :done
+      end
+  	end
     resources :addresses, :except => [:show]
     root 'items#top'
   end
