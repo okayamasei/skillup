@@ -3,6 +3,8 @@ class Public::ItemsController < ApplicationController
     end
     def index
         
+        @items = Item.paginate(page: params[:page], per_page: 50).search(params[:search])
+
     end
     def show
         @item = Item.find(params[:id])

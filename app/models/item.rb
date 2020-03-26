@@ -5,9 +5,16 @@ class Item < ApplicationRecord
 
     def self.search(search)
       if search
-        Item.where(['content LIKE ?', "%#{search}%"])
+        Item.where(['name LIKE ?', "%#{search}%"])
       else
         Item.all
+      end
+    end
+    def self.search(search) #self.はUser.を意味する
+     if search
+       where(['name LIKE ?', "%#{search}%"]) #検索とuseanameの部分一致を表示。
+     else
+       all #全て表示させる
       end
     end
 end

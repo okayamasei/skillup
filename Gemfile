@@ -75,3 +75,6 @@ gem 'paranoia'
 gem 'pry-rails'
 
 gem 'enum_help'
+
+gem 'will_paginate',           '3.1.6'
+gem 'bootstrap-will_paginate', '1.0.0'
