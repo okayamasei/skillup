@@ -17,6 +17,19 @@
             <% end %>
           </ul>
         </nav>
+        <%= form_tag(search_path,:method => 'get') do %>
+          <%= text_field_tag :search %>
+          <%= submit_tag 'Search', :name => nil %>
+        <% end %>
+
+        <ul><% @item.each do |item| %>
+          <li>
+            <%= link_to item.title, item %>
+            <%= item.name %>
+          </li>
+        
+          <% end %>
+        </ul>
       </div>
     </header>
   </div>
