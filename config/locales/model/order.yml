@@ -1,0 +1,8 @@
+
+ja:
+  enums:
+    order:
+      payment_method:
+        credit: クレジットカード
+        delivery: 代引き
+        convenience_store: コンビニ支払い

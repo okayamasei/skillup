@@ -4,6 +4,7 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @order_payment_method = params[:order][:payment_method]
+    
     @order_delivery_info_kind = params[:order][:delivery_info_kind]
     case @order_delivery_info_kind
     when 'other'
