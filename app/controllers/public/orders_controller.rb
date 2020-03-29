@@ -22,7 +22,7 @@ class Public::OrdersController < ApplicationController
     puts new_order
     new_order.save
     current_end_user.cart_items.each do |c_i|
-      OrderItem.create(order_id: new_order.id, item_id: c_i.item_id, amount: c_i.amount)
+      OrderDetail.create(order_id: new_order.id, item_id: c_i.item_id, amount: c_i.amount)
       c_i.destroy
     end
     redirect_to done_orders_path
