@@ -3,9 +3,7 @@
 購入・注文情報確認画
 
 <%= form_for(@new_order) do |f| %>
-  <p>お支払方法</p>
-    <p><p class=><%= @order_payment_method %></p></p>
-    <%= f.hidden_field :payment_method, value: @order_payment_method %>
+  
   <p>お届け先</p>
     <% case @order_delivery_info_kind %>
     <% when 'self' %>
