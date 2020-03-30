@@ -11,3 +11,7 @@
   Item.create(genre_id:"2",name:"なかなかなやつ",text:"これはなかなか",non_taxed_price:"550",status:"0")
   Item.create(genre_id:"3",name:"うますぎて売り切れるやつ",text:"これはうますぎる",non_taxed_price:"630",status:"1")
   Item.create(genre_id:"4",name:"そこそこなやつ",text:"これはそこそこ",non_taxed_price:"750",status:"0")
+
+  EndUser.create(email:"aaa@aaa",password:"aaaaaa")
+
+  Admin.create(email:"bbb@bbb",password:"bbbbbb")
